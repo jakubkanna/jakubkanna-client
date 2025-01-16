@@ -37,17 +37,13 @@ function Header() {
           rel="icon"
           type="image/png"
           sizes="192x192"
-          href={`${
-            import.meta.env.BASE_URL
-          }/favicon/android-chrome-192x192.png`}
+          href={`/favicon/android-chrome-192x192.png`}
         />
         <link
           rel="icon"
           type="image/png"
           sizes="512x512"
-          href={`${
-            import.meta.env.BASE_URL
-          }/favicon/android-chrome-512x512.png`}
+          href={`/favicon/android-chrome-512x512.png`}
         />
 
         {/* Optional: Web App Manifest for Android */}
