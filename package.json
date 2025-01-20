@@ -9,8 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "node deploy.js"
+    "sitemap": "node ./src/utils/generateSiteMap.js"
   },
   "engines": {
     "node": ">=22.8.0"
@@ -50,7 +49,6 @@
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.14",
-    "gh-pages": "^6.2.0",
     "globals": "^15.12.0",
     "sass-embedded": "^1.83.0",
     "typescript": "^5.7.2",
