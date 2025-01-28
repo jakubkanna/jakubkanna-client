@@ -4,16 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetch";
 import useIsMobile from "../../hooks/useIsMobile";
-import * as Icons from "react-bootstrap-icons";
 import { Paypal } from "react-bootstrap-icons";
-
-const getIconComponent = (iconName: string) => {
-  const pascalCase = iconName
-    .toLowerCase()
-    .replace(/(?:^|\s)\w/g, (match) => match.toUpperCase())
-    .replace(/\s+/g, "");
-  return Icons[pascalCase as keyof typeof Icons] || null;
-};
 
 export default function Contact() {
   const { data } = useFetchData<ProfileSchema>("profile/1");
@@ -45,9 +36,6 @@ export default function Contact() {
                 <Row>
                   <Col className="d-flex flex-column">
                     {c.socialmedia?.map((sm, i) => {
-                      const IconComponent = sm.platform
-                        ? getIconComponent(sm.platform)
-                        : null;
                       return (
                         <div className="d-inline-block" key={i}>
                           <Link
@@ -56,7 +44,9 @@ export default function Contact() {
                             style={{ gap: "0.25rem" }}
                             className="d-flex align-items-center"
                           >
-                            {IconComponent && <IconComponent />}
+                            <i
+                              className={`bi bi-${sm.platform?.toLowerCase()}`}
+                            />
                             {sm.username}
                           </Link>
                         </div>

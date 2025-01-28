@@ -70,7 +70,7 @@ export default function Works() {
           // Check if work has ALL selected tags
           activeTags.every((selectedTag) =>
             work.general.tags?.some(
-              (tag) => (tag as TagSchema).title === selectedTag
+              (tag: TagSchema) => (tag as TagSchema).title === selectedTag
             )
           )
         )
@@ -181,12 +181,12 @@ export default function Works() {
                             activeTags.includes(tag)
                               ? "btn-dark fs-5"
                               : tag === "Looking for funding"
-                              ? "btn-funding"
-                              : tag === "Fight or Flight"
-                              ? "btn-outline-dark fs-5"
-                              : tag === "Velo-art"
-                              ? "btn-outline-dark fs-5"
-                              : "btn-outline-dark"
+                                ? "btn-funding"
+                                : tag === "Fight or Flight"
+                                  ? "btn-outline-dark fs-5"
+                                  : tag === "Velo-art"
+                                    ? "btn-outline-dark fs-5"
+                                    : "btn-outline-dark"
                           } mx-1`}
                           onClick={() => handleTagSelect(tag)}
                         >

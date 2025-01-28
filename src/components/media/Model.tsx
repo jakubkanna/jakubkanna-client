@@ -116,7 +116,7 @@ export default function Model({
           onError={(e: unknown) => console.error("Error loading model:", e)}
           alt={""}
           style={{
-            backgroundColor: threedref.backgroundColor,
+            backgroundColor: threedref.backgroundColor || "transparent",
           }}
           poster={threedref.poster?.url as string}
           exposure="0.75"

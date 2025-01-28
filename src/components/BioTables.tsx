@@ -5,9 +5,8 @@ import { renderSingleItem } from "../hooks/useArrayRender";
 import Image from "./media/Image";
 import useCalculatePadding from "../hooks/useCalculatePadding";
 import useIsMobile from "../hooks/useIsMobile";
-
-import { Link45deg, Link as LinkIcon } from "react-bootstrap-icons";
 import { createRoot } from "react-dom/client";
+import { Link, Link45deg } from "react-bootstrap-icons";
 
 export default function BioTables({ profile }: { profile: ProfileSchema }) {
   const [publicId, setPublicId] = useState<string | null>(null);
@@ -52,7 +51,7 @@ export default function BioTables({ profile }: { profile: ProfileSchema }) {
     return isExternal ? (
       <Link45deg className="fs-2 p-1 pb-2" />
     ) : (
-      <LinkIcon className="fs-2 p-1  pb-2" />
+      <Link className="fs-2 p-1  pb-2" />
     );
   };
 
