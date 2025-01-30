@@ -3,6 +3,7 @@ import { Col } from "react-bootstrap";
 import RowWrapper from "../../components/Homepage/RowWrapper";
 import useIsMobile from "../../hooks/useIsMobile";
 import AbsoluteDivs from "../../components/Homepage/AbsoluteDivs";
+import { Helmet } from "react-helmet";
 
 function Homepage() {
   const styles: { [key: string]: React.CSSProperties } = {
@@ -124,6 +125,14 @@ function Homepage() {
 
   return (
     <>
+      <Helmet>
+        <title>JAKUB KANNA</title>
+        <meta
+          name="description"
+          content="Interdisciplinary artist, born in 1996 in Mrągowo (northeastern Poland). His practice blurs the boundaries between art, sport, and utopia."
+        />
+        <meta name="author" content="JAKUB KANNA" />
+      </Helmet>
       <AbsoluteDivs />
       <Col xs={12} style={styles.container}>
         {/* Where are we going? */}
