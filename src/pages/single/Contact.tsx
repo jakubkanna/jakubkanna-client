@@ -5,10 +5,23 @@ import { Link } from "react-router-dom";
 import { useFetchData } from "../../hooks/useFetch";
 import useIsMobile from "../../hooks/useIsMobile";
 import { Paypal } from "react-bootstrap-icons";
+import { useEffect } from "react";
 
 export default function Contact() {
   const { data } = useFetchData<ProfileSchema>("profile/1");
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    // Load Bootstrap Icons CSS dynamically
+    const link = document.createElement("link");
+    link.href =
+      "https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
 
   if (!data) return null;
 
