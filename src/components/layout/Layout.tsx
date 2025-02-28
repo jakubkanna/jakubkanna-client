@@ -35,6 +35,7 @@ export default function Layout({
       {/* Toggling the content */}
       <Helmet>
         <title>{metadata.title}</title>
+        <meta name="title" content={metadata.title} />
         <meta name="description" content={metadata.description} />
         <meta name="author" content={metadata.name} />
       </Helmet>

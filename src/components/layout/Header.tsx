@@ -12,6 +12,7 @@ function Header() {
     <header>
       <Helmet>
         <title>{preferences?.artists_name}</title>
+        <meta name="title" content={preferences?.artists_name} />
         <meta name="author" content={preferences?.artists_name} />
         <meta name="theme-color" content={lightColor} />
         {/* Favicons and Icons for Different Platforms */}
