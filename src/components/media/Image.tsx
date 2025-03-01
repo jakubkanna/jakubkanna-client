@@ -56,7 +56,7 @@ const ImageComp = ({ imageref, className }: ImageProps) => {
         src={imgSrc} // Use the preloaded `imgSrc` for stable display
         srcSet={srcSet}
         sizes={sizes}
-        alt={alt}
+        alt={alt || ""}
         className={className || "img-fluid"}
         loading="lazy"
       />
