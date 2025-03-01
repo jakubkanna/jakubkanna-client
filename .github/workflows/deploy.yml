@@ -36,14 +36,13 @@ jobs:
 
       - name: Create .env file for build
         run: |
-          echo "VITE_SERVER_API_URL=${{ secrets.VITE_SERVER_API_URL }}" >> .env
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
           echo "VITE_CLD_CLOUD_NAME=${{ secrets.VITE_CLD_CLOUD_NAME }}" >> .env
 
       - name: Build the project
         run: |
           npm run build  # Replace with the appropriate build command for your project
 
-          
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
