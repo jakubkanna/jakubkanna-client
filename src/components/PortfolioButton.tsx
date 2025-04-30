@@ -22,7 +22,7 @@ const PortfolioButton = ({ url }: { url?: string | null }) => {
       <>
         {!isVisible ? (
           <span className="link" onClick={triggerForm}>
-            Download CV
+            Download (PDF)
           </span>
         ) : (
           <div id="mc_embed_signup">
@@ -65,8 +65,8 @@ const PortfolioButton = ({ url }: { url?: string | null }) => {
               </div>
             </form>
             <small className="text-muted" style={{ fontSize: "10px" }}>
-              * Your email will be used to send the CV via Mailchimp and stored
-              securely for contact purposes. You can unsubscribe anytime.
+              * Your email will be used to send the Portfolio via Mailchimp and
+              stored securely for contact purposes. You can unsubscribe anytime.
             </small>
           </div>
         )}
