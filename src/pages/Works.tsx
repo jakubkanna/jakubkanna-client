@@ -163,7 +163,7 @@ export default function Works() {
       {slug ? (
         <Outlet />
       ) : !data ? (
-        <p>No works yet.</p>
+        <p>No works to display.</p>
       ) : (
         <Layout title={"Works"}>
           <Col>
@@ -181,12 +181,12 @@ export default function Works() {
                             activeTags.includes(tag)
                               ? "btn-dark fs-5"
                               : tag === "Looking for funding"
-                                ? "btn-funding"
-                                : tag === "Fight or Flight"
-                                  ? "btn-outline-dark fs-5"
-                                  : tag === "Velo-art"
-                                    ? "btn-outline-dark fs-5"
-                                    : "btn-outline-dark"
+                              ? "btn-funding"
+                              : tag === "Fight or Flight"
+                              ? "btn-outline-dark fs-5"
+                              : tag === "Velo-art"
+                              ? "btn-outline-dark fs-5"
+                              : "btn-outline-dark"
                           } mx-1`}
                           onClick={() => handleTagSelect(tag)}
                         >
