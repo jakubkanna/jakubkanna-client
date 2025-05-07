@@ -114,7 +114,7 @@ export default function BioTables({ profile }: { profile: ProfileSchema }) {
               >
                 <Image
                   imageref={{ public_id: publicId }}
-                  className="object-fit-cover w-100 h-100  border-top border-bottom border-dark"
+                  className="object-fit-cover w-100 h-100 border border-dark"
                 />
               </div>
             ) : (
