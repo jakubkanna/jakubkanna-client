@@ -38,8 +38,8 @@ export default function Contact() {
           }
         >
           {contact?.map((c, i) => (
-            <Row key={i}>
-              <Col>
+            <Row key={i} className={i !== 0 ? "border-top border-dark " : ""}>
+              <Col className="py-2">
                 <Row>
                   <Col>{c.name}</Col>
                 </Row>
@@ -48,28 +48,27 @@ export default function Contact() {
                 </Row>
                 <Row>
                   <Col className="d-flex flex-column">
-                    {c.socialmedia?.map((sm, i) => {
-                      return (
-                        <div className="d-inline-block" key={i}>
-                          <Link
-                            to={sm.profileUrl || "#"}
-                            target="_blank"
-                            style={{ gap: "0.25rem" }}
-                            className="d-flex align-items-center"
-                          >
-                            <i
-                              className={`bi bi-${sm.platform?.toLowerCase()}`}
-                            />
-                            {sm.username}
-                          </Link>
-                        </div>
-                      );
-                    })}
+                    {c.socialmedia?.map((sm, j) => (
+                      <div className="d-inline-block" key={j}>
+                        <Link
+                          to={sm.profileUrl || "#"}
+                          target="_blank"
+                          style={{ gap: "0.25rem" }}
+                          className="d-flex align-items-center"
+                        >
+                          <i
+                            className={`bi bi-${sm.platform?.toLowerCase()}`}
+                          />
+                          {sm.username}
+                        </Link>
+                      </div>
+                    ))}
                   </Col>
                 </Row>
               </Col>
             </Row>
           ))}
+
           <Row className="mt-auto border-top border-dark small">
             <Col className="d-flex align-items-center pt-1">
               {" "}
