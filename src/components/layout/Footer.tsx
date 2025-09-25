@@ -26,7 +26,7 @@ export default function Footer({
   const menuItems = [
     { label: "Bio", path: "bio" },
     { label: "Blog", path: "blog" },
-    { label: "Works", path: "works" },
+    { label: "Artworks", path: "works" },
     { label: "Contact", path: "contact" },
   ];
 

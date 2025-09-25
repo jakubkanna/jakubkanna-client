@@ -165,7 +165,7 @@ export default function Works() {
       ) : !data ? (
         <p>No works to display.</p>
       ) : (
-        <Layout title={"Works"}>
+        <Layout title={"Artworks"}>
           <Col>
             {/* Tag Filter Buttons */}
             {tags.length > 0 && (
