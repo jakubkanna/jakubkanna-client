@@ -1,12 +1,19 @@
 import { useContext } from "react";
 import { GeneralContext } from "../../contexts/GeneralContext";
 import { Helmet } from "react-helmet";
+import { Button, Navbar } from "react-bootstrap";
+import { List } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
+import useIsHome from "../../hooks/useIsHome";
 
 function Header() {
   const { preferences } = useContext(GeneralContext);
-
+  const lightColor = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue("--light-color");
+  const isHome = useIsHome();
   return (
-    <header>
+    <header className={isHome ? "fixed-bottom" : "sticky-bottom"}>
       <Helmet>
         <title>{preferences?.artists_name}</title>
         <meta name="author" content={preferences?.artists_name} />
@@ -63,6 +70,41 @@ function Header() {
           content="/favicon/android-chrome-512x512.png"
         />
       </Helmet>
+
+      {/* nav */}
+
+      <nav
+        className={
+          "d-flex justify-content-between border-bottom border-top border-dark p-2 align-items-center bg-kanna "
+        }
+      >
+        <Navbar.Brand className="text-uppercase">
+          <Link to={"/"}>JAKUB KANNA</Link>
+        </Navbar.Brand>
+        <div className="d-flex gap-4">
+          {!isHome && (
+            <>
+              <Button
+                className="rounded-pill px-3 bg-primary text-white "
+                variant="outline-dark"
+                onClick={() =>
+                  window.open("https://shop.jakubkanna.com", "_blank")
+                }
+                id="shop-btn"
+                size="sm"
+              >
+                Shop
+              </Button>
+            </>
+          )}
+          <Button
+            className="p-0 flex-grow-1 d-flex justify-content-end"
+            variant="link"
+          >
+            <List className="fs-1" />
+          </Button>
+        </div>
+      </nav>
     </header>
   );
 }

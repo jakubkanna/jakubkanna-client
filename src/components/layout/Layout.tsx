@@ -4,7 +4,7 @@ import { GeneralContext } from "../../contexts/GeneralContext";
 import { Helmet } from "react-helmet";
 
 import { ProfileSchema } from "@jakubkanna/labguy-front-schema";
-import AnimatedTitle from "../AnimatedTitle";
+import Title from "../AnimatedTitle";
 import { containerTransDuration } from "../../utils/framerMotionVariants";
 import { motion } from "framer-motion";
 
@@ -39,7 +39,8 @@ export default function Layout({
         <meta name="description" content={metadata.description} />
         <meta name="author" content={metadata.name} />
       </Helmet>
-      {/* Header */}
+
+      {/* Heading */}
       {title && (
         <Row
           id="SinglePageHeader"
@@ -48,7 +49,7 @@ export default function Layout({
         >
           {header || (
             <h1 className="display-1 fw-normal mb-0">
-              <AnimatedTitle title={title} />
+              <Title title={title} />
             </h1>
           )}
         </Row>

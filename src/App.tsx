@@ -12,8 +12,8 @@ function App({ children }: { children: ReactNode }) {
     <>
       <ScrollProvider>
         <ErrorBoundary FallbackComponent={Fallback}>
-          <Header />
           <Main footerHeight={footerHeight}>{children}</Main>
+          <Header />
           <Footer setFooterHeight={setFooterHeight} />
         </ErrorBoundary>
       </ScrollProvider>

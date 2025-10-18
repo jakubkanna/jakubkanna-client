@@ -1,12 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Navbar, Button, Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { GeneralContext } from "../../contexts/GeneralContext";
 import { Link } from "react-router-dom";
 import useIsMobile from "../../hooks/useIsMobile";
 import { ScrollContext } from "../../contexts/ScrollContext";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import useIsHome from "../../hooks/useIsHome";
-import { List } from "react-bootstrap-icons";
 
 export default function Footer({
   setFooterHeight,
@@ -20,7 +19,6 @@ export default function Footer({
   const footerRef = useRef<HTMLDivElement | null>(null);
   const isBottom = useContext(ScrollContext);
   const [open, setOpen] = useState(false);
-  const [contentHeight, setContentHeight] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const isHome = useIsHome();
   const menuItems = [
@@ -42,81 +40,45 @@ export default function Footer({
     if (!isBottom) setOpen(false);
   }, [isBottom]);
 
-  // Measure content height when it is rendered
-  useEffect(() => {
-    if (contentRef.current) {
-      setContentHeight(contentRef.current.clientHeight);
-    }
-  }, [open]);
-
   return (
-    <footer
-      className={`container-fluid ${
-        isHome ? "position-fixed " : "position-sticky "
-      } bottom-0 start-0 bg-kanna w-100 border-top border-dark mh-100 z-3 ${
-        isMobile && "overflow-auto py-2"
-      }`}
-      ref={footerRef}
-    >
-      {/* HIDDEN */}
-      <nav
-        className={"d-flex justify-content-between align-items-center bg-kanna"}
-      >
-        <Navbar.Brand className="text-uppercase">
-          <Link to={"/"} onClick={() => setOpen(false)}>
-            {artists_name}
-          </Link>
-        </Navbar.Brand>
+    !isHome && (
+      <footer ref={footerRef}>
+        {/* VISIBLE */}
 
-        <Button
-          onClick={() => setOpen(!open)}
-          className="p-0 flex-grow-1 d-flex justify-content-end"
-          variant="link"
-        >
-          <List className="fs-1" />
-        </Button>
-      </nav>
+        <motion.div ref={contentRef}>
+          <Container fluid className="bg-kanna py-5">
+            {/* Right column: two-column grid of links */}
 
-      {/* VISIBLE */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0 }}
-            animate={{ height: contentHeight || "auto" }}
-            exit={{ height: 0, transition: { ease: "linear" } }}
-            transition={{ duration: 0.33 }}
-            ref={contentRef}
-          >
-            <Row className="bg-kanna">
+            <div
+              className="d-grid"
+              style={{
+                gridTemplateColumns: "1fr 1fr",
+                gap: "0.5rem",
+              }}
+            >
               {menuItems.map((item, index) => (
-                <Col
+                <Link
+                  to={item.path}
+                  onClick={() => setOpen(false)}
                   key={index}
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  className="py-5 text-center"
+                  className="text-center text-uppercase"
+                  // target={item.blank ? "_blank" : "_self"}
                 >
-                  <Link
-                    to={item.path}
-                    onClick={() => setOpen(false)}
-                    className="fs-3"
-                  >
-                    {item.label}
-                  </Link>
-                </Col>
+                  {item.label}
+                </Link>
               ))}
-            </Row>
-            <Row className="bg-kanna">
-              <Col className="font-monospace pt-2 border-dark d-flex justify-content-end">
-                <small>
-                  © {currentYear} {artists_name}
-                </small>
-              </Col>
-            </Row>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </footer>
+            </div>
+          </Container>
+
+          <Container fluid className="bg-kanna px-0">
+            <Col className="p-4 border-dark d-flex justify-content-center border-top ">
+              <small style={{ fontSize: "0.75rem" }} className="text-center">
+                © {currentYear} {artists_name}
+              </small>
+            </Col>
+          </Container>
+        </motion.div>
+      </footer>
+    )
   );
 }
