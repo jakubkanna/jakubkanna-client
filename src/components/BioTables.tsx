@@ -88,7 +88,7 @@ export default function BioTables({ profile }: { profile: ProfileSchema }) {
 
   return (
     <Col className="border-dark border-top" ref={containerRef}>
-      <Container id="Tables">
+      <Container fluid id="Tables">
         <Row>
           <Col className="p-0" md={6}>
             <div className={`border-start border-dark mw-100 overflow-auto `}>

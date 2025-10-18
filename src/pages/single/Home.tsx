@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet";
-import Layout from "../../components/layout/Layout";
 
 function Homepage() {
   return (
@@ -12,9 +11,7 @@ function Homepage() {
         />
         <meta name="author" content="JAKUB KANNA" />
       </Helmet>
-      <Layout>
-        <main>new homepage</main>
-      </Layout>{" "}
+      <main>new homepage</main>
     </>
   );
 }
