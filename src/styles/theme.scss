@@ -50,13 +50,14 @@ table {
 }
 
 .table {
-  --bs-table-bg: rgba(255, 255, 255, 0.2);
-  --bs-table-border-color: $dark;
-  border-color: $dark;
+  --bs-table-bg: transparent;
+  --bs-table-border-color: black;
+  border-color: black;
   border: none;
   border-top: 1px solid;
   td {
     padding-left: 2rem;
+    padding-right: 2rem;
   }
   &:last-child {
     margin: 0;
@@ -67,7 +68,14 @@ table {
     }
   }
 }
-
+tr.link:hover,
+tr.link {
+  text-decoration: none;
+}
+tr.link:hover {
+  background-color: $kanna;
+  --bs-table-hover-bg: $kanna;
+}
 .text-outline {
   color: white;
   -webkit-text-stroke: 0.5px black;
@@ -118,6 +126,15 @@ $utilities: (
   color: white;
 }
 
+input {
+  border: 1px solid $dark !important;
+  &:not(.btn) {
+    background: transparent !important;
+  }
+  &:focus {
+    background: white !important  ;
+  }
+}
 // @import "./scrollbar.scss";
 @import "./btn.scss";
 @import "./navbar.scss";

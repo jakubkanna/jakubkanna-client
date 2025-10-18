@@ -8,10 +8,9 @@ import useIsHome from "../../hooks/useIsHome";
 
 function Header() {
   const { preferences } = useContext(GeneralContext);
-  const lightColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue("--light-color");
+
   const isHome = useIsHome();
+
   return (
     <header className={isHome ? "fixed-bottom" : "sticky-bottom"}>
       <Helmet>

@@ -41,27 +41,27 @@ export default function Contact() {
             <Row key={i} className={i !== 0 ? "border-top border-dark " : ""}>
               <Col className="py-2">
                 <Row>
-                  <Col>{c.name}</Col>
+                  <Col className="fw-semibold">{c.name}</Col>
                 </Row>
                 <Row>
                   <Col>{c.email}</Col>
                 </Row>
                 <Row>
-                  <Col className="d-flex flex-column">
+                  <Col className="d-flex flex-wrap gap-2">
                     {c.socialmedia?.map((sm, j) => (
-                      <div className="d-inline-block" key={j}>
-                        <Link
-                          to={sm.profileUrl || "#"}
-                          target="_blank"
-                          style={{ gap: "0.25rem" }}
-                          className="d-flex align-items-center"
-                        >
-                          <i
-                            className={`bi bi-${sm.platform?.toLowerCase()}`}
-                          />
-                          {sm.username}
-                        </Link>
-                      </div>
+                      <Link
+                        key={j}
+                        to={sm.profileUrl || "#"}
+                        target="_blank"
+                        className="d-inline-flex align-items-center text-decoration-none text-dark"
+                        style={{
+                          gap: "0.25rem",
+                          width: "auto",
+                        }}
+                      >
+                        <i className={`bi bi-${sm.platform?.toLowerCase()}`} />
+                        <span>{sm.username}</span>
+                      </Link>
                     ))}
                   </Col>
                 </Row>

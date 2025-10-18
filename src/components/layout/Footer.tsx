@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Col, Container } from "react-bootstrap";
 import { GeneralContext } from "../../contexts/GeneralContext";
 import { Link } from "react-router-dom";
 import useIsMobile from "../../hooks/useIsMobile";
