@@ -41,7 +41,7 @@ export default function Contact() {
             <Row key={i} className={i !== 0 ? "border-top border-dark " : ""}>
               <Col className="py-2">
                 <Row>
-                  <Col className="fw-semibold">{c.name}</Col>
+                  <Col className="fs-3">{c.name}</Col>
                 </Row>
                 <Row>
                   <Col>{c.email}</Col>
