@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import HomeMain from "../../components/Homepage/HomeMain_exodia_v1";
 
 function Homepage() {
   return (
@@ -11,7 +12,7 @@ function Homepage() {
         />
         <meta name="author" content="JAKUB KANNA" />
       </Helmet>
-      <main>new homepage</main>
+      <HomeMain />
     </>
   );
 }

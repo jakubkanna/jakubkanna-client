@@ -15,7 +15,11 @@ function Header() {
 
   return (
     <>
-      <header className={isHome ? "fixed-bottom" : "sticky-bottom"}>
+      <header
+        className={
+          isHome ? "fixed-bottom border-0 bg-transparent" : "sticky-bottom"
+        }
+      >
         <Helmet>
           <title>{preferences?.artists_name}</title>
           <meta name="author" content={preferences?.artists_name} />
@@ -59,33 +63,32 @@ function Header() {
           />
         </Helmet>
 
-        <nav className="d-flex justify-content-between border-bottom border-top border-dark p-2 align-items-center bg-kanna">
-          <Navbar.Brand className="text-uppercase">
-            <Link to={"/"}>JAKUB KANNA</Link>
-          </Navbar.Brand>
-          <div className="d-flex gap-4">
-            {!isHome && (
-              <Button
-                className="rounded-pill px-3 bg-primary text-white"
-                variant="outline-dark"
-                onClick={() =>
-                  window.open("https://shop.jakubkanna.com", "_blank")
-                }
-                id="shop-btn"
-                size="sm"
-              >
-                Shop
-              </Button>
-            )}
+        {isHome ? (
+          <div className="d-flex justify-content-center align-items-center pb-3">
             <Button
-              className="p-0 flex-grow-1 d-flex justify-content-end"
-              variant="link"
+              className="px-4 py-2 text-uppercase"
+              variant="outline-light"
               onClick={() => setOpen(true)}
             >
-              <List className="fs-1" />
+              Menu
             </Button>
           </div>
-        </nav>
+        ) : (
+          <nav className="d-flex justify-content-between border-bottom border-top border-dark p-2 align-items-center bg-kanna">
+            <Navbar.Brand className="text-uppercase">
+              <Link to={"/"}>JAKUB KANNA</Link>
+            </Navbar.Brand>
+            <div className="d-flex gap-4">
+              <Button
+                className="p-0 flex-grow-1 d-flex justify-content-end"
+                variant="link"
+                onClick={() => setOpen(true)}
+              >
+                <List className="fs-1" />
+              </Button>
+            </div>
+          </nav>
+        )}
       </header>
 
       {/* Fullscreen Menu */}
@@ -94,7 +97,7 @@ function Header() {
           { label: "Home", path: "/" },
 
           ...menuItems,
-          { label: "Shop", path: "https://shop.jakubkanna.com/", blank: true },
+          // { label: "Shop", path: "https://shop.jakubkanna.com/", blank: true },
         ]}
         open={open}
         setOpen={setOpen}

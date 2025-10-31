@@ -44,3 +44,13 @@
   background-color: blue !important;
   color: white !important;
 }
+
+.btn-outline-light {
+  color: $kanna;
+  border-color: $kanna;
+  &:hover {
+    background-color: $kanna !important;
+    color: black !important;
+    border-color: black !important;
+  }
+}

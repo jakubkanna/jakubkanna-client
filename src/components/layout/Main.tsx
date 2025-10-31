@@ -13,7 +13,9 @@ export default function Main({
 
   return (
     <main
-      className={`container-fluid d-flex flex-column`}
+      className={
+        `container-fluid d-flex flex-column ` + (isHome && " m-0 p-0 bg-kanna")
+      }
       style={{
         minHeight: height,
         height: isHome ? "100dvh" : "100%",
