@@ -1,15 +1,551 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jakub Kanna</title>
+    <link rel="icon" href="public/favicon.ico" />
+    <style>
+      :root {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background: #f7f7f7;
+        color: #0f0f0f;
+      }
+
+      body {
+        margin: 0;
+        padding: 32px;
+      }
+
+      .wrapper {
+        max-width: 760px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        line-height: 1.55;
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-size: 24px;
+        font-weight: normal;
+      }
+
+      .role {
+        margin: 0 0 6px;
+        font-size: 16px;
+        letter-spacing: 0.02em;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      a:hover,
+      a:focus-visible {
+        text-decoration: underline;
+      }
+
+      .lang {
+        font-size: 15px;
+      }
+
+      .section {
+        margin-top: 20px;
+        font-size: 15px;
+      }
+
+      .section h2 {
+        margin: 0 0 8px;
+        font-size: 18px;
+        font-weight: normal;
+        letter-spacing: 0.01em;
+      }
+
+      .section ul {
+        padding-left: 18px;
+        margin: 8px 0;
+      }
+
+      .section li {
+        margin-bottom: 4px;
+      }
+
+      hr {
+        border: 0;
+        height: 1px;
+        background: #0f0f0f;
+        margin: 24px 0;
+      }
+
+      .image-block {
+        margin-top: 12px;
+      }
+
+      .image-block img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .image-meta {
+        margin-top: 6px;
+        font-size: 14px;
+        letter-spacing: 0.01em;
+      }
+
+      .image-meta strong {
+        font-weight: 600;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 8px;
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        border: 1px solid #0f0f0f;
+        padding: 6px 8px;
+        vertical-align: top;
+      }
+
+      th {
+        text-align: left;
+        font-weight: 600;
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 18px;
+        }
+
+        .wrapper {
+          gap: 12px;
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+
+        .role {
+          font-size: 15px;
+        }
+
+        .lang,
+        .section {
+          font-size: 14px;
+        }
+
+        table {
+          display: block;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        th,
+        td {
+          white-space: nowrap;
+        }
+      }
+    </style>
   </head>
-  <!-- DESIGNED AND DEVELOPED BY JAKUBKANNA -->
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <main class="wrapper">
+      <section>
+        <h1>JAKUB KANNA</h1>
+        <div class="role" data-i18n="role">
+          artist, graphic designer, full-stack developer
+        </div>
+        <a class="contact" href="mailto:info@jakubkanna.com" data-i18n="contact"
+          >info@jakubkanna.com</a
+        >
+      </section>
+
+      <section class="lang" lang="pl">
+        <p data-i18n="body-pl">
+          Aktualnie jestem w 100% poświęcony projektom
+          <a href="https://exodia.art">Exodia.art</a> oraz
+          <a href="https://studio.jakubkanna.com">STUDIO JKN</a>. Wszystkie moje
+          nadchodzące prace będą umieszczane na platformie Exodia. Stara strona
+          została zarchiwizowana i cykle prac
+          <a href="https://archive.jakubkanna.com/velo-art">Velo-art</a> oraz
+          <a href="https://archive.jakubkanna.com/fight-or-flight"
+            >Fight or flight</a
+          >
+          nadal są dostępne. Nadal możecie śledzić też moje poczynania na
+          <a href="https://instagram.com/jakubkanna">social mediach</a>.
+        </p>
+      </section>
+
+      <section class="lang" lang="en">
+        <p data-i18n="body-en">
+          I am currently fully dedicated to
+          <a href="https://exodia.art">Exodia.art</a> and
+          <a href="https://studio.jakubkanna.com">STUDIO JKN</a>. All upcoming
+          works will appear on the Exodia platform. The old site is archived,
+          and the series
+          <a href="https://archive.jakubkanna.com/velo-art">Velo-art</a> and
+          <a href="https://archive.jakubkanna.com/fight-or-flight"
+            >Fight or Flight</a
+          >
+          remain available. You can still follow along on
+          <a href="https://instagram.com/jakubkanna">social media</a>.
+        </p>
+      </section>
+
+      <hr />
+
+      <section class="section">
+        <h2>Statement</h2>
+        <p data-lang="en">
+          <em
+            >With dedication for all of those who are brave enough to do things
+            that most see as meaningless.</em
+          >
+        </p>
+        <p data-lang="pl" hidden>
+          <em
+            >Z dedykacją dla wszystkich, którzy mają odwagę robić rzeczy, które
+            większość uważa za bezsensowne.</em
+          >
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Biogram</h2>
+        <ul data-lang="en">
+          <li>Jakub Kanna; formally Jakub Trzciński.</li>
+          <li>Born in 1996 in Mrągowo (North-East of Poland).</li>
+          <li>Childhood filled with sport education.</li>
+          <li>
+            In 2022 studied at
+            <a href="https://avu.cz/en">Academy of Fine Arts in Prague</a>.
+          </li>
+          <li>
+            Holds BA in printmaking and MA in Intermedia at
+            <a href="https://uap.edu.pl/">University of Arts in Poznan</a>.
+          </li>
+          <li>
+            In 2024 finished fullstack developer course at
+            <a href="https://www.theodinproject.com/">TOP</a>.
+          </li>
+          <li>
+            The most important realisations:
+            <a href="https://jakubkanna.com/works?tags=Velo-art">Velo-art</a>,
+            <a href="https://jakubkanna.com/works?tags=Fight+or+Flight"
+              >Fight or Flight</a
+            >.
+          </li>
+        </ul>
+        <ul data-lang="pl" hidden>
+          <li>Jakub Kanna; formalnie Jakub Trzciński.</li>
+          <li>Urodzony w 1996 roku w Mrągowie (północno‑wschodnia Polska).</li>
+          <li>Dzieciństwo wypełnione edukacją sportową.</li>
+          <li>
+            W 2022 studiował na
+            <a href="https://avu.cz/en">Akademii Sztuk Pięknych w Pradze</a>.
+          </li>
+          <li>
+            Licencjat z grafiki warsztatowej i magisterium z intermediów na
+            <a href="https://uap.edu.pl/"
+              >Uniwersytecie Artystycznym w Poznaniu</a
+            >.
+          </li>
+          <li>
+            W 2024 ukończył kurs fullstack developer w
+            <a href="https://www.theodinproject.com/">TOP</a>.
+          </li>
+          <li>
+            Najważniejsze realizacje:
+            <a href="https://jakubkanna.com/works?tags=Velo-art">Velo-art</a>,
+            <a href="https://jakubkanna.com/works?tags=Fight+or+Flight"
+              >Fight or Flight</a
+            >.
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Selected Exhibitions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Venue</th>
+              <th>Year</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>THRESHOLD</td>
+              <td>WRO Art Center</td>
+              <td>2024</td>
+              <td>
+                <a href="https://prog.wrocenter.pl/en/">prog.wrocenter.pl</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Fight or Flight</td>
+              <td>United Climbing</td>
+              <td>2023</td>
+              <td>
+                <a href="https://jakubkanna.com/fight-or-flight"
+                  >jakubkanna.com/fight-or-flight</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>STRESS TEST</td>
+              <td>newscenario.net</td>
+              <td>2023</td>
+              <td>
+                <a href="http://newscenario.net/stresstest/"
+                  >newscenario.net/stresstest</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Prima Materia</td>
+              <td>Polish Dance Theater, Poznań</td>
+              <td>2022</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>STREETFIGHT</td>
+              <td>Musem of Modern Art, Warsaw</td>
+              <td>2022</td>
+              <td>
+                <a href="https://wwb14.artmuseum.pl/en/wystawa"
+                  >wwb14.artmuseum.pl/en/wystawa</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Absence of Protagonists</td>
+              <td>SKALA, Poznań</td>
+              <td>2022</td>
+              <td>
+                <a href="https://jakubkanna.com/absence-of-protagonists"
+                  >jakubkanna.com/absence-of-protagonists</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>UNESSENTIAL</td>
+              <td>SKALA, Poznań</td>
+              <td>2020</td>
+              <td>
+                <a
+                  href="https://www.facebook.com/100052241269991/posts/915063898900261/"
+                  >facebook.com/…900261</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Green Light</td>
+              <td>LUKA5G, Minecraft</td>
+              <td>2020</td>
+              <td>
+                <a href="https://jakubkanna.com/green-light"
+                  >jakubkanna.com/green-light</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>#DRAWING</td>
+              <td>Wozownia, Toruń</td>
+              <td>2020</td>
+              <td>
+                <a href="https://wozownia.pl/jakub-trzcinski-rower-farba-i-ja/"
+                  >wozownia.pl/jakub-trzcinski-rower-farba-i-ja</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>XI Graphic's Biennale</td>
+              <td>Galeria Miejska Arsenał, Poznań</td>
+              <td>2018</td>
+              <td>
+                <a
+                  href="https://uap.edu.pl/2019/04/xi-biennale-grafiki-studenckiej-2019-wystawa-laureatow/"
+                  >uap.edu.pl/…biennale</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Typomania Festival</td>
+              <td>Moscow</td>
+              <td>2018</td>
+              <td>
+                <a
+                  href="https://www.youtube.com/watch?v=qTjCOhHI5qI&list=PLtncaV5qMi4wvtrTUQB84zE3yT8N5iIoy&index=191"
+                  >youtube.com/watch?v=qTjCOhHI5qI</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2>Selected Workshops &amp; Residencies</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Venue</th>
+              <th>Year</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>UAP/ZHdK Partnership</td>
+              <td>Centre of Polish Sculpture, Orońsko</td>
+              <td>2021</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Disappearing on the Vistula River, Residency stay</td>
+              <td>W788 Foundation</td>
+              <td>2021</td>
+              <td>
+                <a href="https://jakubkanna.com/disappearing-on-vistula-river"
+                  >jakubkanna.com/disappearing-on-vistula-river</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2>Others</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Venue</th>
+              <th>Year</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Intership</td>
+              <td>The Cabinet of Ramon Haze, SKALA</td>
+              <td>2021</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Publication</td>
+              <td>Adres Prywatny, MSN</td>
+              <td>2021</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Publication</td>
+              <td>Secret Life of a Thing, Czas Kultury</td>
+              <td>2020</td>
+              <td>
+                <a
+                  href="https://czaskultury.pl/artykuly/secret-life-of-a-thing/"
+                  >czaskultury.pl/artykuly/secret-life-of-a-thing</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+        <div class="image-block">
+          <img
+            src="public/_G4A7766_specific-case-of-mbk_jakubkanna.jpeg"
+            alt="Specific case of M.B.K artwork"
+          />
+        <div class="image-meta">
+          <i>Specific case of M.B.K</i><br />
+          &copy; Jakub Kanna <span id="copyright-year"></span>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://unpkg.com/i18next@23.10.1/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@7.2.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+    <script>
+      const resources = {
+        pl: {
+          translation: {
+            role: "artysta, grafik, full-stack developer",
+            contact: "info@jakubkanna.com",
+            body: `Aktualnie jestem w 100% poświęcony projektom <a href="https://exodia.art">Exodia.art</a> oraz <a href="https://studio.jakubkanna.com">STUDIO JKN</a>. Wszystkie moje nadchodzące prace będą umieszczane na platformie Exodia. Stara strona została zarchiwizowana i cykle prac <a href="https://archive.jakubkanna.com/velo-art">Velo-art</a> oraz <a href="https://archive.jakubkanna.com/fight-or-flight">Fight or flight</a> nadal są dostępne. Nadal możecie śledzić też moje poczynania na <a href="https://instagram.com/jakubkanna">social mediach</a>.`,
+          },
+        },
+        en: {
+          translation: {
+            role: "artist, graphic designer, full-stack developer",
+            contact: "info@jakubkanna.com",
+            body: `I am currently fully dedicated to <a href="https://exodia.art">Exodia.art</a> and <a href="https://studio.jakubkanna.com">STUDIO JKN</a>. All upcoming work will appear on the Exodia platform. My previous site is archived, and the series <a href="https://archive.jakubkanna.com/velo-art">Velo-art</a> and <a href="https://archive.jakubkanna.com/fight-or-flight">Fight or Flight</a> remain available. You can still follow along on <a href="https://instagram.com/jakubkanna">social media</a>.`,
+          },
+        },
+      };
+
+      const roleEl = document.querySelector("[data-i18n='role']");
+      const contactEl = document.querySelector("[data-i18n='contact']");
+      const bodyPlEl = document.querySelector("[data-i18n='body-pl']");
+      const bodyEnEl = document.querySelector("[data-i18n='body-en']");
+
+      function setExternalLinkTargets() {
+        document.querySelectorAll('a[href^="http"]').forEach((link) => {
+          link.setAttribute("target", "_blank");
+          link.setAttribute("rel", "noopener noreferrer");
+        });
+      }
+
+      function updateLanguageTexts(lng) {
+        const normalized = (lng || "en").split("-")[0];
+        const t = i18next.getFixedT(normalized);
+        document.documentElement.lang = normalized;
+        roleEl.textContent = t("role");
+        contactEl.textContent = t("contact");
+        const showPl = normalized === "pl";
+        const showEn = normalized === "en";
+        bodyPlEl.innerHTML = showPl ? t("body") : "";
+        bodyEnEl.innerHTML = showEn ? t("body") : "";
+        bodyPlEl.parentElement.hidden = !showPl;
+        bodyEnEl.parentElement.hidden = !showEn;
+        document
+          .querySelectorAll("[data-lang]")
+          .forEach((el) => (el.hidden = el.dataset.lang !== normalized));
+        setExternalLinkTargets();
+      }
+
+      i18next.use(i18nextBrowserLanguageDetector).init(
+        {
+          resources,
+          fallbackLng: "en",
+          detection: {
+            order: ["querystring", "localStorage", "navigator"],
+            lookupQuerystring: "lng",
+            caches: ["localStorage"],
+          },
+        },
+        (err, t) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          updateLanguageTexts(i18next.language);
+        }
+      );
+
+      const yearSpan = document.getElementById("copyright-year");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+    </script>
   </body>
 </html>
