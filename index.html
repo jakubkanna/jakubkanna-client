@@ -99,22 +99,24 @@
       }
 
       table {
-        border-collapse: collapse;
+        border-collapse: separate;
+        border-spacing: 0;
         width: 100%;
         margin-top: 8px;
         font-size: 14px;
+        table-layout: fixed;
+        padding-bottom: 8px;
       }
 
-      th,
       td {
-        border: 1px solid #0f0f0f;
-        padding: 6px 8px;
+        padding: 10px 18px 10px 0;
         vertical-align: top;
+        word-break: break-word;
+        border-bottom: 1px solid #dcdcdc;
       }
 
-      th {
-        text-align: left;
-        font-weight: 600;
+      tbody tr:last-child td {
+        border-bottom: none;
       }
 
       @media (max-width: 640px) {
@@ -234,8 +236,10 @@
           </li>
           <li>
             The most important realisations:
-            <a href="https://jakubkanna.com/works?tags=Velo-art">Velo-art</a>,
-            <a href="https://jakubkanna.com/works?tags=Fight+or+Flight"
+            <a href="https://archive.jakubkanna.com/works?tags=Velo-art"
+              >Velo-art</a
+            >,
+            <a href="https://archive.jakubkanna.com/works?tags=Fight+or+Flight"
               >Fight or Flight</a
             >.
           </li>
@@ -260,8 +264,10 @@
           </li>
           <li>
             Najważniejsze realizacje:
-            <a href="https://jakubkanna.com/works?tags=Velo-art">Velo-art</a>,
-            <a href="https://jakubkanna.com/works?tags=Fight+or+Flight"
+            <a href="https://archive.jakubkanna.com/works?tags=Velo-art"
+              >Velo-art</a
+            >,
+            <a href="https://archive.jakubkanna.com/works?tags=Fight+or+Flight"
               >Fight or Flight</a
             >.
           </li>
@@ -271,14 +277,12 @@
       <section class="section">
         <h2>Selected Exhibitions</h2>
         <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Venue</th>
-              <th>Year</th>
-              <th>Link</th>
-            </tr>
-          </thead>
+          <colgroup>
+            <col style="width: 40%" />
+            <col style="width: 30%" />
+            <col style="width: 10%" />
+            <col style="width: 20%" />
+          </colgroup>
           <tbody>
             <tr>
               <td>THRESHOLD</td>
@@ -293,8 +297,8 @@
               <td>United Climbing</td>
               <td>2023</td>
               <td>
-                <a href="https://jakubkanna.com/fight-or-flight"
-                  >jakubkanna.com/fight-or-flight</a
+                <a href="https://archive.jakubkanna.com/fight-or-flight"
+                  >archive.jakubkanna.com/fight-or-flight</a
                 >
               </td>
             </tr>
@@ -329,8 +333,8 @@
               <td>SKALA, Poznań</td>
               <td>2022</td>
               <td>
-                <a href="https://jakubkanna.com/absence-of-protagonists"
-                  >jakubkanna.com/absence-of-protagonists</a
+                <a href="https://archive.jakubkanna.com/absence-of-protagonists"
+                  >archive.jakubkanna.com/absence-of-protagonists</a
                 >
               </td>
             </tr>
@@ -350,8 +354,8 @@
               <td>LUKA5G, Minecraft</td>
               <td>2020</td>
               <td>
-                <a href="https://jakubkanna.com/green-light"
-                  >jakubkanna.com/green-light</a
+                <a href="https://archive.jakubkanna.com/green-light"
+                  >archive.jakubkanna.com/green-light</a
                 >
               </td>
             </tr>
@@ -394,14 +398,12 @@
       <section class="section">
         <h2>Selected Workshops &amp; Residencies</h2>
         <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Venue</th>
-              <th>Year</th>
-              <th>Link</th>
-            </tr>
-          </thead>
+          <colgroup>
+            <col style="width: 40%" />
+            <col style="width: 30%" />
+            <col style="width: 10%" />
+            <col style="width: 20%" />
+          </colgroup>
           <tbody>
             <tr>
               <td>UAP/ZHdK Partnership</td>
@@ -414,8 +416,8 @@
               <td>W788 Foundation</td>
               <td>2021</td>
               <td>
-                <a href="https://jakubkanna.com/disappearing-on-vistula-river"
-                  >jakubkanna.com/disappearing-on-vistula-river</a
+                <a href="https://archive.jakubkanna.com/disappearing-on-vistula-river"
+                  >archive.jakubkanna.com/disappearing-on-vistula-river</a
                 >
               </td>
             </tr>
@@ -426,14 +428,12 @@
       <section class="section">
         <h2>Others</h2>
         <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Venue</th>
-              <th>Year</th>
-              <th>Link</th>
-            </tr>
-          </thead>
+          <colgroup>
+            <col style="width: 40%" />
+            <col style="width: 30%" />
+            <col style="width: 10%" />
+            <col style="width: 20%" />
+          </colgroup>
           <tbody>
             <tr>
               <td>Intership</td>
@@ -461,11 +461,12 @@
           </tbody>
         </table>
       </section>
-        <div class="image-block">
-          <img
-            src="public/_G4A7766_specific-case-of-mbk_jakubkanna.jpeg"
-            alt="Specific case of M.B.K artwork"
-          />
+      <hr />
+      <div class="image-block">
+        <img
+          src="public/_G4A7766_specific-case-of-mbk_jakubkanna.jpeg"
+          alt="Specific case of M.B.K artwork"
+        />
         <div class="image-meta">
           <i>Specific case of M.B.K</i><br />
           &copy; Jakub Kanna <span id="copyright-year"></span>
