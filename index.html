@@ -4,23 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jakub Kanna</title>
-    <link rel="icon" href="public/favicon.ico" />
+    <link rel="icon" href="public/favicon/favicon.ico" />
     <style>
       :root {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        background: #f7f7f7;
+        /* background: #f7f7f7; */
         color: rgba(0, 0, 255, 0.8);
       }
       html,
       body {
-        height: 100%;
-        width: 100%;
+        height: 100dvh;
+        width: 100dvw;
         box-sizing: border-box;
-        overflow: hidden;
+        overflow: auto;
+        margin: 0;
+        padding: 0;
       }
       body {
-        margin: 24px;
         font-family: monospace;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-image: url("public/favicon/jakubkanna-landscape.png");
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-size: 100% auto;
         cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='24'%3E%F0%9F%8C%BC%3C/text%3E%3C/svg%3E")
             8 8,
           auto;
@@ -35,9 +43,13 @@
 
       .wrapper {
         max-width: 760px;
+        width: 100%;
         display: flex;
         flex-direction: column;
         gap: 16px;
+        box-sizing: border-box;
+        padding: 24px;
+        padding-bottom: clamp(200px, 30vw, 360px);
       }
 
       h1 {
@@ -126,13 +138,59 @@
         color: rgba(15, 15, 15, 1);
       }
 
-      @media (max-width: 640px) {
-        body {
-          padding: 18px;
-        }
+      .bio {
+        margin-top: 32px;
+        max-width: 760px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
 
+      .bio-content {
+        line-height: 1.5;
+        overflow: hidden;
+        transition: max-height 240ms ease;
+      }
+
+      .bio-content.is-collapsed {
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          #000 0%,
+          #000 70%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          #000 0%,
+          #000 70%,
+          transparent 100%
+        );
+      }
+
+      .bio-toggle {
+        align-self: flex-start;
+        border: none;
+        background: #eeff87;
+        color: rgba(15, 15, 15, 1);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-family: inherit;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .bio-toggle:hover,
+      .bio-toggle:focus-visible {
+        background: rgba(15, 15, 15, 1);
+        color: #eeff87;
+        outline: none;
+      }
+
+      @media (max-width: 640px) {
         .wrapper {
           gap: 12px;
+          padding: 18px;
+          padding-bottom: clamp(200px, 30vw, 360px);
         }
 
         h1 {
@@ -154,9 +212,7 @@
       <section>
         <h1>JAKUB KANNA</h1>
         <div class="marquee" data-marquee>
-          <div class="marquee-track role">
-            artist, graphic designer, full-stack developer,
-          </div>
+          <div class="marquee-track role" data-marquee-text></div>
         </div>
         <a
           class="contact"
@@ -174,44 +230,16 @@
           >Socialmedia</a
         >
       </div>
+
+      <section class="bio" data-bio>
+        <div class="bio-content" data-bio-content></div>
+        <button class="bio-toggle" type="button" data-bio-toggle>
+          Read more
+        </button>
+      </section>
     </main>
-    <script>
-      const marquee = document.querySelector("[data-marquee]");
-      const track = marquee?.querySelector(".marquee-track");
 
-      if (marquee && track) {
-        const text = track.textContent.trim();
-        track.textContent = "";
-
-        const createItem = () => {
-          const span = document.createElement("span");
-          span.className = "marquee-item";
-          span.textContent = text;
-          return span;
-        };
-
-        track.append(createItem(), createItem());
-
-        const ensureFill = () => {
-          const targetWidth = marquee.clientWidth * 2;
-          while (track.scrollWidth < targetWidth) {
-            track.append(createItem());
-          }
-        };
-
-        const setDuration = () => {
-          const pixelsPerSecond = 80;
-          const duration = Math.max(track.scrollWidth / pixelsPerSecond, 10);
-          track.style.animationDuration = `${duration.toFixed(2)}s`;
-        };
-
-        ensureFill();
-        setDuration();
-        window.addEventListener("resize", () => {
-          ensureFill();
-          setDuration();
-        });
-      }
-    </script>
+    <script src="content.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
