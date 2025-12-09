@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import handleFetchError from "../utils/handleFetchError";
+import { resolveStaticData } from "../utils/staticData";
 
 export const useFetchData = <T,>(path: string) => {
   const [data, setData] = useState<T | null>(null);
@@ -7,17 +7,16 @@ export const useFetchData = <T,>(path: string) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       setLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/${path}`);
-        if (!response.ok) {
-          throw new Error(handleFetchError(response.status));
+        const result = resolveStaticData(path);
+        if (result === null || result === undefined) {
+          throw new Error(`No static data found for path "${path}".`);
         }
-        const result: T = await response.json();
-        setData(result);
+        setData(result as T);
       } catch (err) {
         setError(
           (err as Error).message || "An error occurred while fetching data."

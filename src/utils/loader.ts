@@ -1,8 +1,9 @@
-import handleFetchError from "./handleFetchError";
+import { resolveStaticData } from "./staticData";
 
 export const fetchData = async <T>(path: string): Promise<T> => {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/${path}`);
-  if (!response.ok) handleFetchError(response.status);
-  const data: T = await response.json();
-  return data;
+  const data = resolveStaticData(path);
+  if (data === null || data === undefined) {
+    throw new Error(`No static data found for path "${path}".`);
+  }
+  return data as T;
 };
