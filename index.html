@@ -9,6 +9,16 @@
   </head>
   <!-- DESIGNED AND DEVELOPED BY JAKUBKANNA -->
   <body>
+    <script>
+      (function () {
+        const redirect = sessionStorage.getItem("gh-pages-redirect");
+        if (redirect) {
+          sessionStorage.removeItem("gh-pages-redirect");
+          const target = redirect.startsWith("/") ? redirect : "/" + redirect;
+          window.history.replaceState(null, "", target);
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

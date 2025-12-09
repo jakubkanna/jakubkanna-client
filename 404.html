@@ -9,6 +9,11 @@
   </head>
   <!-- DESIGNED AND DEVELOPED BY JAKUBKANNA -->
   <script>
-    window.location.href = "/";
+    // Preserve path for client-side routing
+    sessionStorage.setItem(
+      "gh-pages-redirect",
+      window.location.pathname + window.location.search + window.location.hash
+    );
+    window.location.replace("/");
   </script>
 </html>
