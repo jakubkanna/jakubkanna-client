@@ -5,6 +5,7 @@ import Main from "./components/layout/Main";
 import { ReactNode, useState } from "react";
 import Fallback from "./components/Fallback";
 import ScrollProvider from "./contexts/providers/ScrollProvider";
+import ArchiveBanner from "./components/layout/ArchiveBanner";
 
 function App({ children }: { children: ReactNode }) {
   const [footerHeight, setFooterHeight] = useState(0);
@@ -12,6 +13,7 @@ function App({ children }: { children: ReactNode }) {
     <>
       <ScrollProvider>
         <ErrorBoundary FallbackComponent={Fallback}>
+          <ArchiveBanner />
           <Main footerHeight={footerHeight}>{children}</Main>
           <Header />
           <Footer setFooterHeight={setFooterHeight} />
