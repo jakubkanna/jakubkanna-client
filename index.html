@@ -11,10 +11,26 @@
         background: #f7f7f7;
         color: rgba(0, 0, 255, 0.8);
       }
-
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
       body {
         margin: 24px;
         font-family: monospace;
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='24'%3E%F0%9F%8C%BC%3C/text%3E%3C/svg%3E")
+            8 8,
+          auto;
+      }
+
+      a:hover,
+      a:focus-visible {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='24'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E")
+            8 8,
+          auto;
       }
 
       .wrapper {
@@ -48,6 +64,7 @@
         );
         width: 250px;
         margin-bottom: 24px;
+        margin-top: 24px;
       }
 
       .marquee-track {
@@ -97,6 +114,16 @@
         background-color: #eeff87;
         border-radius: 999px;
         text-transform: uppercase;
+      }
+
+      ::selection {
+        background: #eeff87;
+        color: rgba(15, 15, 15, 1);
+      }
+
+      ::-moz-selection {
+        background: #eeff87;
+        color: rgba(15, 15, 15, 1);
       }
 
       @media (max-width: 640px) {
