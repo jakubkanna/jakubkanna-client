@@ -9,12 +9,11 @@
       :root {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         background: #f7f7f7;
-        color: rgba(15, 15, 15, 0.8);
+        color: rgba(0, 0, 255, 0.8);
       }
 
       body {
-        margin: 0;
-        padding: 32px;
+        margin: 24px;
         font-family: monospace;
       }
 
@@ -23,7 +22,6 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
-        line-height: 1.55;
       }
 
       h1 {
@@ -38,17 +36,67 @@
         letter-spacing: 0.02em;
       }
 
+      .marquee {
+        overflow: hidden;
+        position: relative;
+        mask-image: linear-gradient(
+          to right,
+          transparent,
+          #000 15%,
+          #000 85%,
+          transparent
+        );
+        width: 250px;
+        margin-bottom: 24px;
+      }
+
+      .marquee-track {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        white-space: nowrap;
+        animation: marquee 14s linear infinite;
+      }
+
+      .marquee-item {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        line-height: 1.4;
+      }
+      .marquee,
+      .marquee-track {
+        padding: 0;
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          transform: translate3d(-50%, 0, 0);
+        }
+      }
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        line-height: 1.4;
+      }
+
       a {
         color: inherit;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        padding-right: 12px;
+        line-height: 1.4;
+        display: inline-block;
       }
 
       a:hover,
       a:focus-visible {
         color: rgba(15, 15, 15, 1);
         text-decoration: underline;
+        background-color: #eeff87;
+        border-radius: 999px;
+        text-transform: uppercase;
       }
 
       @media (max-width: 640px) {
@@ -78,8 +126,10 @@
     <main class="wrapper">
       <section>
         <h1>JAKUB KANNA</h1>
-        <div class="role" data-i18n="role">
-          artist, graphic designer, full-stack developer
+        <div class="marquee" data-marquee>
+          <div class="marquee-track role">
+            artist, graphic designer, full-stack developer,
+          </div>
         </div>
         <a
           class="contact"
@@ -89,7 +139,7 @@
         >
       </section>
 
-      <div>
+      <div class="links">
         <a href="https://archive.jakubkanna.com" target="_blank">Archive</a>
         <a href="https://exodia.art" target="_blank">Exodia.art</a>
         <a href="https://studio.jakubkanna.com" target="_blank">STUDIO JKN</a>
@@ -98,5 +148,43 @@
         >
       </div>
     </main>
+    <script>
+      const marquee = document.querySelector("[data-marquee]");
+      const track = marquee?.querySelector(".marquee-track");
+
+      if (marquee && track) {
+        const text = track.textContent.trim();
+        track.textContent = "";
+
+        const createItem = () => {
+          const span = document.createElement("span");
+          span.className = "marquee-item";
+          span.textContent = text;
+          return span;
+        };
+
+        track.append(createItem(), createItem());
+
+        const ensureFill = () => {
+          const targetWidth = marquee.clientWidth * 2;
+          while (track.scrollWidth < targetWidth) {
+            track.append(createItem());
+          }
+        };
+
+        const setDuration = () => {
+          const pixelsPerSecond = 80;
+          const duration = Math.max(track.scrollWidth / pixelsPerSecond, 10);
+          track.style.animationDuration = `${duration.toFixed(2)}s`;
+        };
+
+        ensureFill();
+        setDuration();
+        window.addEventListener("resize", () => {
+          ensureFill();
+          setDuration();
+        });
+      }
+    </script>
   </body>
 </html>
