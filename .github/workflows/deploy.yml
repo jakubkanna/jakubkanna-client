@@ -1,51 +1,41 @@
 name: Deploy to GitHub Pages
-
 on:
-  # Trigger the workflow on push to the main branch
   push:
-    branches:
-      - main
-  # Allow manual trigger
+    branches: [main]
   workflow_dispatch:
-  # Trigger after the deploy workflow completes
-  workflow_run:
-    workflows: ["Generate Sitemap"]
-    types:
-      - completed
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # Permissions to write to the repository
-      pages: write # Permissions to deploy to GitHub Pages
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          fetch-depth: 0 # Fetch all history to avoid issues with commit history
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build
+        env:
+          VITE_BASE_URL: "/${{ github.event.repository.name }}/"
+      - uses: actions/upload-pages-artifact@v3
         with:
-          node-version: "22" # Use the appropriate Node.js version for your project
+          path: dist
 
-      - name: Install dependencies
-        run: |
-          npm install  # Install dependencies, adjust based on your package manager
-
-      - name: Create .env file for build
-        run: |
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
-          echo "VITE_CLD_CLOUD_NAME=${{ secrets.VITE_CLD_CLOUD_NAME }}" >> .env
-
-      - name: Build the project
-        run: |
-          npm run build  # Replace with the appropriate build command for your project
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Use the GitHub token to authenticate the deployment
-          publish_dir: ./dist # Directory containing the built files (adjust if needed)
-          cname: ${{secrets.BASE_URL}}
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
