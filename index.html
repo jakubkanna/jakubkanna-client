@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,10 +9,10 @@
       :root {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         background: #f7f7f7;
-        color: #0f0f0f;
+        color: rgba(15, 15, 15, 0.8);
       }
 
-      body:not(h1){
+      body {
         margin: 0;
         padding: 32px;
         font-family: monospace;
@@ -40,84 +40,15 @@
 
       a {
         color: inherit;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-right: 12px;
       }
 
       a:hover,
       a:focus-visible {
+        color: rgba(15, 15, 15, 1);
         text-decoration: underline;
-      }
-
-      .lang {
-        font-size: 15px;
-      }
-
-      .section {
-        margin-top: 20px;
-        font-size: 15px;
-      }
-
-      .section h2 {
-        margin: 0 0 8px;
-        font-size: 18px;
-        font-weight: normal;
-        letter-spacing: 0.01em;
-      }
-
-      .section ul {
-        padding-left: 18px;
-        margin: 8px 0;
-      }
-
-      .section li {
-        margin-bottom: 4px;
-      }
-
-      hr {
-        border: 0;
-        height: 1px;
-        background: #0f0f0f;
-        margin: 24px 0;
-      }
-
-      .image-block {
-        margin-top: 12px;
-      }
-
-      .image-block img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      .image-meta {
-        margin-top: 6px;
-        font-size: 14px;
-        letter-spacing: 0.01em;
-      }
-
-      .image-meta strong {
-        font-weight: 600;
-      }
-
-      table {
-        border-collapse: separate;
-        border-spacing: 0;
-        width: 100%;
-        margin-top: 8px;
-        font-size: 14px;
-        table-layout: fixed;
-        padding-bottom: 8px;
-      }
-
-      td {
-        padding: 10px 18px 10px 0;
-        vertical-align: top;
-        word-break: break-word;
-        border-bottom: 1px solid #dcdcdc;
-      }
-
-      tbody tr:last-child td {
-        border-bottom: none;
       }
 
       @media (max-width: 640px) {
@@ -137,20 +68,8 @@
           font-size: 15px;
         }
 
-        .lang,
-        .section {
+        div {
           font-size: 14px;
-        }
-
-        table {
-          display: block;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-        }
-
-        th,
-        td {
-          white-space: nowrap;
         }
       }
     </style>
@@ -162,120 +81,22 @@
         <div class="role" data-i18n="role">
           artist, graphic designer, full-stack developer
         </div>
-        <a class="contact" href="mailto:info@jakubkanna.com" data-i18n="contact"
-          >info@jakubkanna.com</a
+        <a
+          class="contact"
+          href="mailto:hello.jakubkanna@gmail.com"
+          data-i18n="contact"
+          >hello.jakubkanna@gmail.com</a
         >
       </section>
 
-      <section class="lang" lang="pl">
-        <p data-i18n="body-pl">
-          Aktualnie jestem w 100% poświęcony projektom
-          <a href="https://exodia.art">Exodia.art</a> oraz
-          <a href="https://studio.jakubkanna.com">STUDIO JKN</a>. Wszystkie moje
-          nadchodzące prace będą umieszczane na platformie Exodia. Stara strona
-          została zarchiwizowana i cykle prac
-          <a href="https://archive.jakubkanna.com/velo-art">Velo-art</a> oraz
-          <a href="https://archive.jakubkanna.com/fight-or-flight"
-            >Fight or flight</a
-          >
-          nadal są dostępne. Nadal możecie śledzić też moje poczynania na
-          <a href="https://instagram.com/jakubkanna">social mediach</a>.
-        </p>
-      </section>
-
-      <section class="lang" lang="en">
-        <p data-i18n="body-en">
-          I am currently fully dedicated to
-          <a href="https://exodia.art">Exodia.art</a> and
-          <a href="https://studio.jakubkanna.com">STUDIO JKN</a>. All upcoming
-          works will appear on the Exodia platform. The old site is archived,
-          and the series
-          <a href="https://archive.jakubkanna.com/velo-art">Velo-art</a> and
-          <a href="https://archive.jakubkanna.com/fight-or-flight"
-            >Fight or Flight</a
-          >
-          remain available. You can still follow along on
-          <a href="https://instagram.com/jakubkanna">social media</a>.
-        </p>
-      </section>
-
-
-
-      
-
-    <script src="https://unpkg.com/i18next@23.10.1/dist/umd/i18next.min.js"></script>
-    <script src="https://unpkg.com/i18next-browser-languagedetector@7.2.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
-    <script>
-      const resources = {
-        pl: {
-          translation: {
-            role: "artysta, grafik, full-stack developer",
-            contact: "info@jakubkanna.com",
-            body: `Aktualnie jestem w 100% poświęcony projektom <a href="https://exodia.art">Exodia.art</a> oraz <a href="https://studio.jakubkanna.com">STUDIO JKN</a>. Wszystkie moje nadchodzące prace będą umieszczane na platformie Exodia. Stara strona została zarchiwizowana i cykle prac <a href="https://archive.jakubkanna.com/velo-art">Velo-art</a> oraz <a href="https://archive.jakubkanna.com/fight-or-flight">Fight or flight</a> nadal są dostępne. Nadal możecie śledzić też moje poczynania na <a href="https://instagram.com/jakubkanna">social mediach</a>.`,
-          },
-        },
-        en: {
-          translation: {
-            role: "artist, graphic designer, full-stack developer",
-            contact: "info@jakubkanna.com",
-            body: `I am currently fully dedicated to <a href="https://exodia.art">Exodia.art</a> and <a href="https://studio.jakubkanna.com">STUDIO JKN</a>. All upcoming work will appear on the Exodia platform. My previous site is archived, and the series <a href="https://archive.jakubkanna.com/velo-art">Velo-art</a> and <a href="https://archive.jakubkanna.com/fight-or-flight">Fight or Flight</a> remain available. You can still follow along on <a href="https://instagram.com/jakubkanna">social media</a>.`,
-          },
-        },
-      };
-
-      const roleEl = document.querySelector("[data-i18n='role']");
-      const contactEl = document.querySelector("[data-i18n='contact']");
-      const bodyPlEl = document.querySelector("[data-i18n='body-pl']");
-      const bodyEnEl = document.querySelector("[data-i18n='body-en']");
-
-      function setExternalLinkTargets() {
-        document.querySelectorAll('a[href^="http"]').forEach((link) => {
-          link.setAttribute("target", "_blank");
-          link.setAttribute("rel", "noopener noreferrer");
-        });
-      }
-
-      function updateLanguageTexts(lng) {
-        const normalized = (lng || "en").split("-")[0];
-        const t = i18next.getFixedT(normalized);
-        document.documentElement.lang = normalized;
-        roleEl.textContent = t("role");
-        contactEl.textContent = t("contact");
-        const showPl = normalized === "pl";
-        const showEn = normalized === "en";
-        bodyPlEl.innerHTML = showPl ? t("body") : "";
-        bodyEnEl.innerHTML = showEn ? t("body") : "";
-        bodyPlEl.parentElement.hidden = !showPl;
-        bodyEnEl.parentElement.hidden = !showEn;
-        document
-          .querySelectorAll("[data-lang]")
-          .forEach((el) => (el.hidden = el.dataset.lang !== normalized));
-        setExternalLinkTargets();
-      }
-
-      i18next.use(i18nextBrowserLanguageDetector).init(
-        {
-          resources,
-          fallbackLng: "en",
-          detection: {
-            order: ["querystring", "localStorage", "navigator"],
-            lookupQuerystring: "lng",
-            caches: ["localStorage"],
-          },
-        },
-        (err, t) => {
-          if (err) {
-            console.error(err);
-            return;
-          }
-          updateLanguageTexts(i18next.language);
-        }
-      );
-
-      const yearSpan = document.getElementById("copyright-year");
-      if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-      }
-    </script>
+      <div>
+        <a href="https://archive.jakubkanna.com" target="_blank">Archive</a>
+        <a href="https://exodia.art" target="_blank">Exodia.art</a>
+        <a href="https://studio.jakubkanna.com" target="_blank">STUDIO JKN</a>
+        <a href="https://instagram.com/jakubkanna" target="_blank"
+          >Socialmedia</a
+        >
+      </div>
+    </main>
   </body>
 </html>
