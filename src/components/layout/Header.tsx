@@ -25,42 +25,39 @@ function Header() {
           <meta name="author" content={preferences?.artists_name} />
 
           {/* Favicons */}
-          <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon" />
+          <link rel="icon" href={`${base}favicon/favicon.ico`} type="image/x-icon" />
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="/favicon/favicon-32x32.png"
+            href={`${base}favicon/favicon-32x32.png`}
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="/favicon/favicon-16x16.png"
+            href={`${base}favicon/favicon-16x16.png`}
           />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="/favicon/apple-touch-icon.png"
+            href={`${base}favicon/apple-touch-icon.png`}
           />
-          <link rel="manifest" href="/favicon/site.webmanifest" />
+          <link rel="manifest" href={`${base}favicon/site.webmanifest`} />
 
           {/* Open Graph */}
           <meta property="og:title" content={preferences?.artists_name} />
           <meta property="og:type" content="website" />
           <meta
             property="og:image"
-            content="/favicon/android-chrome-512x512.png"
+            content={`${base}favicon/android-chrome-512x512.png`}
           />
           <meta property="og:url" content={window.location.href} />
 
           {/* Twitter */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={preferences?.artists_name} />
-          <meta
-            name="twitter:image"
-            content="/favicon/android-chrome-512x512.png"
-          />
+          <meta name="twitter:image" content={`${base}favicon/android-chrome-512x512.png`} />
         </Helmet>
 
         {isHome ? (
@@ -107,3 +104,4 @@ function Header() {
 }
 
 export default Header;
+  const base = import.meta.env.BASE_URL || "/";

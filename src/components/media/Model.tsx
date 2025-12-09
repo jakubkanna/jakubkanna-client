@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { ModelViewer } from "../../../types/model-viewer";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { ArrowsFullscreen, ArrowsMove } from "react-bootstrap-icons";
+import { getLocalMediaPath } from "../../utils/mediaPaths";
 
 export default function Model({
   threedref,
@@ -12,7 +13,9 @@ export default function Model({
   threedref: ThreedRef;
   controls?: true;
 }) {
-  const [src, setSrc] = useState<string | undefined>(threedref?.url);
+  const localModelPath =
+    getLocalMediaPath(threedref?.url, threedref?.path) || threedref?.url;
+  const [src, setSrc] = useState<string | undefined>(localModelPath);
   const [valid, setIsValid] = useState<boolean>(true);
   const [controls, setControls] = useState<boolean>(false);
   const [fullscreen, setFullscreen] = useState<boolean>(false);
@@ -117,7 +120,14 @@ export default function Model({
           style={{
             backgroundColor: threedref.backgroundColor || "transparent",
           }}
-          poster={threedref.poster?.url as string}
+          poster={
+            (getLocalMediaPath(
+              threedref.poster?.url as string | undefined,
+              threedref.poster?.path as string | undefined
+            ) ||
+              (threedref.poster?.url as string | undefined)) ??
+            undefined
+          }
           exposure="0.75"
         >
           <div

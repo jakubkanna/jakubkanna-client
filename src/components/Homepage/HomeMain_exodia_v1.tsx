@@ -69,7 +69,7 @@ const createVelocity = () => {
   };
 };
 
-const logoSrc = "/images/exodia_star.svg";
+const logoSrc = `${import.meta.env.BASE_URL || "/"}images/exodia_star.svg`;
 
 export default function HomeMain() {
   const [hovered, setHovered] = useState(false);

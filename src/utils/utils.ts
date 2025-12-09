@@ -1,54 +1,26 @@
-import { Cloudinary } from "@cloudinary/url-gen";
-import { scale } from "@cloudinary/url-gen/actions/resize";
 import { ImageRefSchema } from "@jakubkanna/labguy-front-schema";
+import { getLocalMediaPath } from "./mediaPaths";
 
-// Global sizes for responsive images
-const sizes = {
-  SMALL: 400,
-  MEDIUM: 800,
-  BIG: 1600,
-  FULL: 2160,
-};
-
-// Cloudinary URL generator with a specific width
-function getCldUrl(public_id: string, width: number) {
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: import.meta.env.VITE_CLD_CLOUD_NAME,
-    },
-  });
-
-  const myImage = cld.image(public_id);
-  myImage.resize(scale().width(width));
-  return myImage.toURL();
-}
-
-// Generate srcSet for responsive image loading
-function getSrcSet(public_id: string) {
-  return Object.values(sizes)
-    .map((width) => `${getCldUrl(public_id, width)} ${width}w`)
-    .join(", ");
-}
-
-// Get Image attributes based on Cloudinary availability
+// Get Image attributes based on local uploads
 export function getImageAttributes(image: ImageRefSchema) {
-  const { public_id } = image;
+  const localPath = getLocalMediaPath(
+    image.path as string | undefined,
+    image.cld_url as string | undefined,
+    image.public_id as string | undefined
+  );
 
-  if (public_id) {
-    return {
-      src: getCldUrl(public_id, sizes.MEDIUM),
-      srcSet: getSrcSet(public_id),
-      sizes: `(max-width: 600px) ${sizes.SMALL}px, (max-width: 1200px) ${sizes.MEDIUM}px, (max-width: 1600px) ${sizes.BIG}px, ${sizes.FULL}px`,
-      alt: image.description || "",
-    };
-  }
+  const fallbackPath =
+    !localPath && image.filename && image.format
+      ? `${import.meta.env.BASE_URL || "/"}uploads/images/${image.filename}.${
+          image.format
+        }`
+      : "";
 
-  // Non-Cloudinary image or missing data fallback
   return {
-    src: "",
+    src: localPath || fallbackPath,
     srcSet: "",
     sizes: "",
-    alt: "",
+    alt: image.description || "",
   };
 }
 export interface Padding {
