@@ -8,6 +8,7 @@ export default function ArchiveBanner() {
         borderBottom: "1px solid #000",
         borderTop: "1px solid #000",
       }}
+      dismissible
     >
       This is archived version of jakubkanna.com 2018-2026
     </Alert>
