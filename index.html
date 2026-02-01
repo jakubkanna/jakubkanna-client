@@ -34,6 +34,32 @@
           auto;
       }
 
+      body.is-loading {
+        overflow: hidden;
+      }
+
+      body.is-loading .wrapper {
+        visibility: hidden;
+      }
+
+      .page-loader {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-family: monospace;
+        font-size: 16px;
+        letter-spacing: 0.08em;
+        background: #ffffff;
+        color: rgba(0, 0, 255, 0.8);
+        z-index: 9999;
+      }
+
+      body.is-loading .page-loader {
+        display: flex;
+      }
+
       a:hover,
       a:focus-visible {
         cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='24'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E")
@@ -207,7 +233,8 @@
       }
     </style>
   </head>
-  <body>
+  <body class="is-loading" data-bg="public/favicon/jakubkanna-landscape.jpg">
+    <div class="page-loader" aria-live="polite">Loading...</div>
     <main class="wrapper">
       <section>
         <h1>JAKUB KANNA</h1>

@@ -112,6 +112,20 @@
   };
 
   document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+    const bgUrl = body?.dataset?.bg;
+    if (bgUrl) {
+      const preloadImage = new Image();
+      const finishLoading = () => {
+        body.classList.remove("is-loading");
+      };
+      preloadImage.onload = finishLoading;
+      preloadImage.onerror = finishLoading;
+      preloadImage.src = bgUrl;
+    } else if (body) {
+      body.classList.remove("is-loading");
+    }
+
     const copy = getCopy();
 
     const marquee = document.querySelector("[data-marquee]");
