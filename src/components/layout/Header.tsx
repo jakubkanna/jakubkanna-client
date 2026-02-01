@@ -60,17 +60,7 @@ function Header() {
           <meta name="twitter:image" content={`${base}favicon/android-chrome-512x512.png`} />
         </Helmet>
 
-        {isHome ? (
-          <div className="d-flex justify-content-center align-items-center pb-3">
-            <Button
-              className="px-4 py-2 text-uppercase"
-              variant="outline-light"
-              onClick={() => setOpen(true)}
-            >
-              Menu
-            </Button>
-          </div>
-        ) : (
+        {isHome ? null : (
           <nav className="d-flex justify-content-between border-bottom border-top border-dark p-2 align-items-center bg-kanna">
             <Navbar.Brand className="text-uppercase">
               <Link to={"/"}>JAKUB KANNA</Link>

@@ -1,10 +1,5 @@
-import {
-  motion,
-  useAnimationFrame,
-  useMotionValue,
-  type MotionStyle,
-} from "framer-motion";
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { type CSSProperties, useState } from "react";
+import { Link } from "react-router-dom";
 
 const pageStyle: CSSProperties = {
   height: "100%",
@@ -28,23 +23,6 @@ const starFieldStyle: CSSProperties = {
   overflow: "hidden",
 };
 
-const baseLinkStyle: CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "0.5rem",
-  textDecoration: "none",
-  color: "inherit",
-};
-
-const linkStyle: CSSProperties = {
-  ...baseLinkStyle,
-  backgroundColor: "transparent",
-  borderRadius: 0,
-  padding: 0,
-};
-
 const footerStyle: CSSProperties = {
   padding: "10px",
   display: "flex",
@@ -55,122 +33,91 @@ const footerStyle: CSSProperties = {
   textTransform: "uppercase",
 };
 
-const STAR_WIDTH = 80;
-const STAR_HEIGHT = 110;
-const STAR_SPEED = 90;
-
-const createVelocity = () => {
-  const angle = Math.random() * Math.PI * 2;
-  const vx = Math.cos(angle) * STAR_SPEED;
-  const vy = Math.sin(angle) * STAR_SPEED;
-  return {
-    vx: Math.abs(vx) < 15 ? Math.sign(vx || 1) * 30 : vx,
-    vy: Math.abs(vy) < 15 ? Math.sign(vy || 1) * 30 : vy,
-  };
+const navWrapperStyle: CSSProperties = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: "0.75rem",
+  textAlign: "center",
+  zIndex: 1,
 };
 
-const logoSrc = `${import.meta.env.BASE_URL || "/"}images/exodia_star.svg`;
+const navLinkStyle: CSSProperties = {
+  color: "inherit",
+  textDecoration: "none",
+  fontSize: "1.25rem",
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+};
 
 export default function HomeMain() {
-  const [hovered, setHovered] = useState(false);
-  const [bounds, setBounds] = useState({ width: 0, height: 0 });
-  const velocityRef = useRef(createVelocity());
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
-  useEffect(() => {
-    const updateBounds = () => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const { width, height } = container.getBoundingClientRect();
-      setBounds({
-        width: Math.max(width - STAR_WIDTH, 0),
-        height: Math.max(height - STAR_HEIGHT, 0),
-      });
-    };
-
-    updateBounds();
-    window.addEventListener("resize", updateBounds);
-    return () => window.removeEventListener("resize", updateBounds);
-  }, []);
-
-  useEffect(() => {
-    if (!bounds.width || !bounds.height) return;
-    x.set(bounds.width / 2);
-    y.set(bounds.height / 2);
-  }, [bounds.height, bounds.width, x, y]);
-
-  useAnimationFrame((_, delta) => {
-    if (!bounds.width || !bounds.height) return;
-
-    const deltaSeconds = delta / 1000;
-    let nextX = x.get() + velocityRef.current.vx * deltaSeconds;
-    let nextY = y.get() + velocityRef.current.vy * deltaSeconds;
-    let { vx, vy } = velocityRef.current;
-
-    if (nextX <= 0) {
-      nextX = 0;
-      vx = Math.abs(vx);
-    } else if (nextX >= bounds.width) {
-      nextX = bounds.width;
-      vx = -Math.abs(vx);
-    }
-
-    if (nextY <= 0) {
-      nextY = 0;
-      vy = Math.abs(vy);
-    } else if (nextY >= bounds.height) {
-      nextY = bounds.height;
-      vy = -Math.abs(vy);
-    }
-
-    x.set(nextX);
-    y.set(nextY);
-    velocityRef.current = { vx, vy };
+  const getNavLinkStyle = (key: string): CSSProperties => ({
+    ...navLinkStyle,
+    fontWeight: 222,
+    color: hoveredLink === key ? "black" : navLinkStyle.color,
   });
 
-  const logoImageStyle: CSSProperties = {
-    display: "block",
-    transition: "filter 160ms ease-in-out",
-    filter: hovered
-      ? "drop-shadow(0 0 12px var(--kanna-color-alpha, rgba(238, 255, 135, 0.55)))"
-      : "none",
-  };
-
-  const motionWrapperStyle: MotionStyle = {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    display: "inline-flex",
-    x,
-    y,
-  };
-
   return (
-    <div ref={containerRef} style={pageStyle} className="container-fluid p-0">
+    <div style={pageStyle} className="container-fluid p-0">
       <div style={starFieldStyle}>
-        <motion.div style={motionWrapperStyle}>
-          <a
-            href="https://exodia.art"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={linkStyle}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            onFocus={() => setHovered(true)}
-            onBlur={() => setHovered(false)}
+        <div style={navWrapperStyle}>
+          <Link
+            to="/"
+            style={getNavLinkStyle("home")}
+            onMouseEnter={() => setHoveredLink("home")}
+            onMouseLeave={() => setHoveredLink(null)}
+            onFocus={() => setHoveredLink("home")}
+            onBlur={() => setHoveredLink(null)}
           >
-            <img
-              src={logoSrc}
-              alt="Exodia star logo"
-              width={60}
-              height={60}
-              style={logoImageStyle}
-            />
-          </a>
-        </motion.div>
+            Home
+          </Link>
+          <Link
+            to="/bio"
+            style={getNavLinkStyle("bio")}
+            onMouseEnter={() => setHoveredLink("bio")}
+            onMouseLeave={() => setHoveredLink(null)}
+            onFocus={() => setHoveredLink("bio")}
+            onBlur={() => setHoveredLink(null)}
+          >
+            Bio
+          </Link>
+          <Link
+            to="/blog"
+            style={getNavLinkStyle("blog")}
+            onMouseEnter={() => setHoveredLink("blog")}
+            onMouseLeave={() => setHoveredLink(null)}
+            onFocus={() => setHoveredLink("blog")}
+            onBlur={() => setHoveredLink(null)}
+          >
+            Blog
+          </Link>
+          <Link
+            to="/works"
+            style={getNavLinkStyle("works")}
+            onMouseEnter={() => setHoveredLink("works")}
+            onMouseLeave={() => setHoveredLink(null)}
+            onFocus={() => setHoveredLink("works")}
+            onBlur={() => setHoveredLink(null)}
+          >
+            Artworks
+          </Link>
+          <Link
+            to="/contact"
+            style={getNavLinkStyle("contact")}
+            onMouseEnter={() => setHoveredLink("contact")}
+            onMouseLeave={() => setHoveredLink(null)}
+            onFocus={() => setHoveredLink("contact")}
+            onBlur={() => setHoveredLink(null)}
+          >
+            Contact
+          </Link>
+        </div>
       </div>
       <div style={footerStyle} id="jakubkanna">
         <span>Jakub Kanna</span>

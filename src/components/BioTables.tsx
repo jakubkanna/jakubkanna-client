@@ -17,9 +17,17 @@ export default function BioTables({ profile }: { profile: ProfileSchema }) {
 
   const onMouseEnter = (_index: number, row: Element) => {
     const publicIdCell = row.querySelector("td:nth-child(4)"); // Target the 4th column for publicId
-    const newPublicId = publicIdCell?.textContent?.trim();
+    if (!publicIdCell) return;
+
+    const rawText = publicIdCell.textContent?.trim();
+    const ariaValue =
+      publicIdCell
+        .querySelector("[aria-label]")
+        ?.getAttribute("aria-label")
+        ?.trim() || "";
+    const newPublicId = rawText || ariaValue;
+
     if (newPublicId && newPublicId !== "image_publicid") {
-      // Ensure the row is not the header row
       setPublicId(newPublicId);
     }
   };
@@ -28,24 +36,30 @@ export default function BioTables({ profile }: { profile: ProfileSchema }) {
 
   useEffect(() => {
     const rows = containerRef.current?.querySelectorAll("table tr");
+    if (!rows?.length) return;
 
-    rows?.forEach((row, index) => {
-      if (index > 0) {
-        // Start from second row (skip header)
-        row.addEventListener("mouseenter", () => onMouseEnter(index, row));
-        row.addEventListener("mouseleave", onMouseLeave);
-      }
+    const handlers: Array<{
+      row: Element;
+      enter: () => void;
+      leave: () => void;
+    }> = [];
+
+    rows.forEach((row, index) => {
+      if (index === 0) return;
+      const enter = () => onMouseEnter(index, row);
+      const leave = () => onMouseLeave();
+      row.addEventListener("mouseenter", enter);
+      row.addEventListener("mouseleave", leave);
+      handlers.push({ row, enter, leave });
     });
 
     return () => {
-      rows?.forEach((row, index) => {
-        if (index > 0) {
-          row.removeEventListener("mouseenter", () => onMouseEnter(index, row));
-          row.removeEventListener("mouseleave", onMouseLeave);
-        }
+      handlers.forEach(({ row, enter, leave }) => {
+        row.removeEventListener("mouseenter", enter);
+        row.removeEventListener("mouseleave", leave);
       });
     };
-  }, []);
+  }, [table]);
 
   const renderIcon = (value: string) => {
     const isExternal = value.startsWith("http");
