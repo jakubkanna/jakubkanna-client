@@ -10,7 +10,8 @@ export default function ArchiveBanner() {
       }}
       dismissible
     >
-      This is archived version of jakubkanna.com 2018-2026
+      This is archived version of{" "}
+      <a href="https://jakubkanna.com">jakubkanna.com</a> 2018-2026
     </Alert>
   );
 }
